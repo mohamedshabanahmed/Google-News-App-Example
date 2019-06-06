@@ -7,6 +7,10 @@ target 'GoogleNewsExample' do
   use_frameworks!
 pod 'Alamofire', '~> 4.5'
 pod 'Nuke', '~> 7.0'
+
+pod 'GoogleMaps'
+  pod 'GooglePlaces'
+
   # Pods for GoogleNewsExample
 
 end

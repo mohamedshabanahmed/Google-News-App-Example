@@ -19,7 +19,6 @@ class NewCell: UITableViewCell {
     }
 
     func loadImage(url : String) {
-
         DispatchQueue.global().async {
             do{
                 let Appurl = URL(string: url)!

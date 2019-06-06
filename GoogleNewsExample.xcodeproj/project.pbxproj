@@ -16,10 +16,24 @@
 		044EEB8E2294D73600AE59ED /* ItemDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044EEB8D2294D73600AE59ED /* ItemDetailsVC.swift */; };
 		044EEB902294DBA100AE59ED /* NewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044EEB8F2294DBA100AE59ED /* NewModel.swift */; };
 		044EEB922294DBD600AE59ED /* NewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044EEB912294DBD600AE59ED /* NewCell.swift */; };
+		04AA16C522A5B8DC00E9737B /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AA16C422A5B8DC00E9737B /* FavoritesVC.swift */; };
+		04AD831A22A80DAA00D8E138 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD831922A80DAA00D8E138 /* Connectivity.swift */; };
 		04F2368522A0B6FE00528A61 /* ItemDtailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2368422A0B6FE00528A61 /* ItemDtailsViewModel.swift */; };
 		04F2368722A0C03B00528A61 /* MainPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2368622A0C03B00528A61 /* MainPageViewModel.swift */; };
 		2D3EFC38643B4A0B26A6D667 /* Pods_GoogleNewsExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAFEC0AD687EBE2FEB739AD /* Pods_GoogleNewsExample.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		04AA16C322A402FB00E9737B /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
 		044EEB752294B65900AE59ED /* GoogleNewsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleNewsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,6 +47,8 @@
 		044EEB8D2294D73600AE59ED /* ItemDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailsVC.swift; sourceTree = "<group>"; };
 		044EEB8F2294DBA100AE59ED /* NewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewModel.swift; sourceTree = "<group>"; };
 		044EEB912294DBD600AE59ED /* NewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCell.swift; sourceTree = "<group>"; };
+		04AA16C422A5B8DC00E9737B /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
+		04AD831922A80DAA00D8E138 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		04F2368422A0B6FE00528A61 /* ItemDtailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDtailsViewModel.swift; sourceTree = "<group>"; };
 		04F2368622A0C03B00528A61 /* MainPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewModel.swift; sourceTree = "<group>"; };
 		1C2825C435D400E4B63F1DF4 /* Pods-GoogleNewsExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleNewsExample.release.xcconfig"; path = "Target Support Files/Pods-GoogleNewsExample/Pods-GoogleNewsExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -73,6 +89,7 @@
 		044EEB772294B65900AE59ED /* GoogleNewsExample */ = {
 			isa = PBXGroup;
 			children = (
+				04AD831822A80D6600D8E138 /* Helper */,
 				04F2368322A0B69600528A61 /* modelview */,
 				04F2368222A0B68E00528A61 /* model */,
 				04F2368122A0B68600528A61 /* view */,
@@ -87,11 +104,20 @@
 			path = GoogleNewsExample;
 			sourceTree = "<group>";
 		};
+		04AD831822A80D6600D8E138 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				04AD831922A80DAA00D8E138 /* Connectivity.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		04F2368122A0B68600528A61 /* view */ = {
 			isa = PBXGroup;
 			children = (
 				044EEB7A2294B65900AE59ED /* ViewController.swift */,
 				044EEB8D2294D73600AE59ED /* ItemDetailsVC.swift */,
+				04AA16C422A5B8DC00E9737B /* FavoritesVC.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -142,8 +168,10 @@
 				044EEB722294B65900AE59ED /* Frameworks */,
 				044EEB732294B65900AE59ED /* Resources */,
 				5FD3BF0EFCBB7D50BB74D941 /* [CP] Embed Pods Frameworks */,
+				19587DF8F9B531226F179710 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
+				04AA16C322A402FB00E9737B /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -199,6 +227,30 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		19587DF8F9B531226F179710 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GoogleNewsExample/Pods-GoogleNewsExample-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GoogleNewsExample/Pods-GoogleNewsExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4650119C5C1D62146FC1090F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -254,9 +306,11 @@
 			files = (
 				04F2368722A0C03B00528A61 /* MainPageViewModel.swift in Sources */,
 				04F2368522A0B6FE00528A61 /* ItemDtailsViewModel.swift in Sources */,
+				04AD831A22A80DAA00D8E138 /* Connectivity.swift in Sources */,
 				044EEB8E2294D73600AE59ED /* ItemDetailsVC.swift in Sources */,
 				044EEB7B2294B65900AE59ED /* ViewController.swift in Sources */,
 				044EEB792294B65900AE59ED /* AppDelegate.swift in Sources */,
+				04AA16C522A5B8DC00E9737B /* FavoritesVC.swift in Sources */,
 				044EEB812294B65900AE59ED /* GoogleNewsExample.xcdatamodeld in Sources */,
 				044EEB922294DBD600AE59ED /* NewCell.swift in Sources */,
 				044EEB902294DBA100AE59ED /* NewModel.swift in Sources */,

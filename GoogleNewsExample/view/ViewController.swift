@@ -9,9 +9,13 @@
 import UIKit
 import Alamofire
 import Nuke
+import CoreData
+
 class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSource{
     
     var mainPageModel : MainPageViewModel!
+    
+    var ListOFTable = [FavoritesNews]()
     
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     
@@ -46,15 +50,67 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
         }
     }
     
+    
+     var refreshControl = UIRefreshControl()
+    
     @IBOutlet weak var tableList: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // start UIActivityIndicatorView
         self.progressIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
+        
+        
+        if Connectivity.isConnectedToInternet {
+           // internet is available
+            LoadDataNews()
+        }else{
+          ShowDialoge()
+        }
+        
+        // Refresh control add in tableview.
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.tableList.addSubview(refreshControl)
+        
+        
+    }
+    
+    func ShowDialoge() {
+        
+        // stop UIActivityIndicatorView
+        self.progressIndicator.stopAnimating()
+        
+        self.refreshControl.endRefreshing()
+        
+        let alert = UIAlertController(title: "No Connectio", message: "No Internet Connection", preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
+        })
+        alert.addAction(ok)
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
+        })
+//        alert.addAction(cancel)
+        DispatchQueue.main.async(execute: {
+            self.present(alert, animated: true)
+        })
+        
+       
+        
+    }
+    
+    @objc func refresh(_ sender: Any) {
+        // Call webservice here after reload tableview.
+        if Connectivity.isConnectedToInternet {
+            // internet is available
+            LoadDataNews()
+        }else{
+            ShowDialoge()
+        }
+    }
+    
+    func  LoadDataNews() {
         progressIndicator.startAnimating()
-        
-        
         // This will be link to get google news
         let Urll = "https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=9f1058e56fde48a782fa3638b40d43ae"
         
@@ -63,7 +119,7 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
             case .success:
                 if let result = response.result.value {
                     let responseDict = result as! [String : Any]
-                     let articles = responseDict["articles"] as! [[String : Any]]
+                    let articles = responseDict["articles"] as! [[String : Any]]
                     print(articles)
                     DispatchQueue.global().sync {
                         // change view
@@ -78,14 +134,30 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
                         
                         // reload data
                         self.tableList.reloadData()
-                        
-                        // stop UIActivityIndicatorView
-                        self.progressIndicator.stopAnimating()
                     }
                 }
             case .failure(let error):
                 print(error)
             }
+        }
+        // stop UIActivityIndicatorView
+        self.progressIndicator.stopAnimating()
+        
+        self.refreshControl.endRefreshing()
+    }
+    
+    
+    
+    func LoadAllFav()  {
+        let fetchRequest : NSFetchRequest<FavoritesNews> =
+            FavoritesNews.fetchRequest()
+        do{
+            self.ListOFTable = try! context.fetch(fetchRequest)
+        
+            print(ListOFTable.count)
+            
+        }catch{
+            print("error")
         }
     }
 }
